@@ -28,7 +28,7 @@ export default function HomePage() {
   };
 
   // While checking sessionStorage on mount, render null to avoid hydration flicker
-  if (showSplash === null) return null;
+  if (showSplash === null) return <div className="fixed inset-0 bg-[#050505] z-[100000]" />;
 
   return (
     <>

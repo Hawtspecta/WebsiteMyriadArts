@@ -159,7 +159,7 @@ export default function HeroSection() {
           loop
           muted
           playsInline
-          preload="metadata"
+          preload="auto"
           onCanPlay={() => setIsVideoReady(true)}
           onPlay={() => setIsVideoReady(true)}
           onPlaying={() => setIsVideoReady(true)}

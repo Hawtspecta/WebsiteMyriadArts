@@ -138,6 +138,7 @@ export default function EventDescriptionSection() {
                 muted
                 playsInline
                 preload="metadata"
+                poster="/images/video-posters/home-vaarsa-poster.jpg"
                 className="absolute inset-0 w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-r from-[#050505]/80 via-transparent to-transparent" />

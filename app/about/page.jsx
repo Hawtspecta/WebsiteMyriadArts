@@ -107,7 +107,7 @@ export default function AboutPage() {
             loop
             muted
             playsInline
-            preload="metadata"
+            preload="auto"
             onCanPlay={() => setIsAboutVideoReady(true)}
             onPlay={() => setIsAboutVideoReady(true)}
             onPlaying={() => setIsAboutVideoReady(true)}

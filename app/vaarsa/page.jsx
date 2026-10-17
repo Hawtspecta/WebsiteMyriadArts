@@ -240,7 +240,7 @@ export default function VaarsaPage() {
             loop
             muted
             playsInline
-            preload="metadata"
+            preload="auto" poster="/images/video-posters/vaarsa-hero-poster.jpg"
             className="w-full h-full object-cover opacity-65 scale-105"
             src="https://media.myriadarts.in/vaarsa/vaarsa-hero-bg.mp4"
           />
