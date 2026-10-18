@@ -132,7 +132,7 @@ export default function HeroSection() {
     >
       <VaarsaAtmosphericBackground />
       {/* 1. Cinematic Stage Entry — Video Background */}
-      {/* <motion.div
+      <motion.div
         className="absolute inset-0 z-0 origin-center bg-black"
         style={{ scale: videoScale, opacity: videoOpacity }}
         initial={{ scale: 1.1 }}
