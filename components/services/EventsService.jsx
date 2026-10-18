@@ -30,7 +30,7 @@ export default function EventsService({ detailScrollRef }) {
              <img alt="Production Stage" className="w-full h-full object-cover" src="/images/services/services-events-cover.jpg" />
           </motion.div>
           <div className="relative z-10 max-w-3xl">
-            <motion.h2 variants={textVariants} className="font-evelins text-4xl md:text-5xl lg:text-6xl text-white leading-tight mb-8">Every Stage Tells A Story. We Build Stages.</motion.h2>
+            <motion.h2 variants={textVariants} className="font-evelins text-4xl md:text-5xl lg:text-6xl text-white leading-tight mb-8">Bringing Indian Folk Traditions to Every Occasion.</motion.h2>
           </div>
         </motion.div>
       </section>

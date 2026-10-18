@@ -16,10 +16,10 @@ export default function AboutTeam() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16">
           {[
-            { name: "Shreyas Desai", role: "Founder & Artistic Director", desc: "The mastermind behind the madness. Aditya orchestrates the collision of eras, engineering psychological landscapes.", img: "/images/team/shreyas-desai.jpeg" },
-            { name: "Shruti Samant", role: "Creative Director", desc: "She doesn't design scenes; she builds environments where the screen disappears and raw emotion takes over.", img: "/images/team/shruti-samant.jpg" },
-            { name: "Kalvati Panchal", role: "Production Manager", desc: "The pulse regulator. Ensures the chaos is perfectly contained, weaponized, and delivered without latency.", img: "/images/team/kalavati-panchal.jpeg" },
-            { name: "Akshata Awlegoankar", role: "Education Lead", desc: "Cultivating the next generation of artistic insurgents. Rewiring the minds and muscles of future architects.", img: "/images/team/akshata-awlegoankar.jpeg" }
+            { name: "Shreyas Desai", role: "Founder & Artistic Director", desc: "The creative force behind Myriad Arts. Shreyas leads the artistic vision, curating performances that celebrate India's diverse folk and classical traditions.", img: "/images/team/shreyas-desai.jpeg" },
+            { name: "Shruti Samant", role: "Creative Director", desc: "Brings each folk tradition to life with authenticity and artistry. Shruti shapes the visual language of every performance and workshop.", img: "/images/team/shruti-samant.jpg" },
+            { name: "Kalvati Panchal", role: "Production Manager", desc: "Ensures every event runs seamlessly from first rehearsal to final bow. The backbone of every Myriad Arts production and live show.", img: "/images/team/kalavati-panchal.jpeg" },
+            { name: "Akshata Awlegoankar", role: "Education Lead", desc: "Nurturing the next generation of folk artists. Akshata designs workshop programmes that pass India's living traditions to younger audiences.", img: "/images/team/akshata-awlegoankar.jpeg" }
           ].map((member, idx) => (
             <div
               key={idx}

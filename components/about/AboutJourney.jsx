@@ -90,10 +90,10 @@ export default function AboutJourney() {
               >
                 <div className="space-y-6 text-[13px] md:text-[14px] text-[#a19e99] leading-relaxed max-w-md font-sans font-medium text-left border-l border-white/10 pl-6">
                   <p>
-                    Established in 2009, Myriad Arts is a one stop shop entertainment for all your entertainment related requirements. Be performing arts, visual arts, conceptualizing and directing stage and onscreen content, celebrity management and much more, be it corporate, entertainment or social sectors in India.
+                    Founded in 2007 by a group of passionate artists, Myriad Arts has grown into one of India's leading folk and classical performance ensembles. Based in Mumbai, we have brought more than 100 folk art forms from across 28 states to audiences on stages throughout India and beyond.
                   </p>
                   <p>
-                    Although based in Mumbai, we strive to make a mark beyond national borders. We believe in originality and creativity of an event and thus make your event memorable and interesting! Myriad is a CART FULL OF ART!
+                    We believe every region of India has a story to tell through its music, movement, costumes, and traditions. Whether it's a corporate event, cultural festival, wedding, or special celebration — Myriad Arts creates performances that connect audiences with India's living artistic heritage.
                   </p>
                 </div>
               </motion.div>

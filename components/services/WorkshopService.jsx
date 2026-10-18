@@ -42,7 +42,7 @@ export default function WorkshopService({ detailScrollRef }) {
         {/*  2. REDUCED SIZE EDITORIAL HEADER SECTION (BELOW BENEFITS, ABOVE CARDS)  */}
         <motion.section variants={containerVariants} className="mb-10 w-full flex justify-center">
           <motion.div variants={textVariants} className="flex flex-col items-center justify-center text-center">
-            <h2 className="font-evelins text-2xl md:text-3xl lg:text-4xl text-on-surface leading-tight text-center mx-auto w-full">Educational Workshops</h2>
+            <h2 className="font-evelins text-2xl md:text-3xl lg:text-4xl text-on-surface leading-tight text-center mx-auto w-full">Folk Arts Workshops & Hands-On Classes</h2>
           </motion.div>
         </motion.section>
 

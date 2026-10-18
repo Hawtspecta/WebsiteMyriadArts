@@ -122,7 +122,7 @@ export default function MissionSection() {
           >
             <div data-aos="fade-right" data-aos-duration="800" className="w-16 h-[2px] bg-red-600 animate-pulse" />
             <p data-aos="fade-up" data-aos-delay="100" className="type-body-md text-white text-justify md:text-left transition-colors duration-500 hover:text-white/80">
-              Myriad Arts, founded in 2007 by college friends, has grown into an ensemble dedicated to preserving India’s folk and classical traditions. Balancing professional careers with a passion for the arts, the group has performed across India and abroad, earning recognition for its work. Guided by a creative vision, it sees art as both lifelong passion and a bridge across generations, ensuring Indian culture thrives globally.
+              Myriad Arts, founded in 2007, has grown into a premier ensemble dedicated to preserving and presenting India&apos;s folk and classical traditions. From vibrant Maharashtrian folk to diverse performing arts across 28 states, the group has performed across India and abroad &mdash; connecting audiences with India&apos;s living cultural heritage through engaging live performances.
             </p>
           </motion.div>
         </motion.div>

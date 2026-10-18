@@ -98,7 +98,7 @@ export default function PerformanceService({ detailScrollRef }) {
           animate="visible"
           className="font-evelins text-4xl md:text-5xl lg:text-6xl text-on-surface mb-4 pt-1 pb-3 leading-snug tracking-wide max-w-full"
         >
-          We Build Stages That Don't Forget You
+          We Bring India's Folk Traditions to Your Stage
         </motion.h1>
         <motion.div variants={textVariants} className="w-24 h-[1px] bg-rule-white mx-auto"></motion.div>
       </section>
