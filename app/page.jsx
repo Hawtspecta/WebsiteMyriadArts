@@ -8,6 +8,7 @@ import HeroSection from "../components/home/HeroSection";
 import MissionSection from "../components/home/MissionSection";
 import CategorySection from "../components/home/CategorySection";
 import MediaShowcase from "../components/home/MediaShowcase";
+import PerformanceJourneySection from "../components/home/PerformanceJourneySection";
 import EventDescriptionSection from "../components/home/EventDescriptionSection";
 import PartnersSection from "../components/home/PartnersSection";
 import Footer from "../components/shared/Footer";
@@ -50,6 +51,7 @@ export default function HomePage() {
           <MissionSection />
         </div>
         <CategorySection />
+        <PerformanceJourneySection />
         <MediaShowcase />
         <EventDescriptionSection />
         <PartnersSection />
