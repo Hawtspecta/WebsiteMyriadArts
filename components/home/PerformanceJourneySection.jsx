@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import VaarsaAtmosphericBackground from "../shared/VaarsaAtmosphericBackground";
 
@@ -13,7 +13,6 @@ const PERFORMANCES = [
       "Geet Govinda is a landmark classical performance by Myriad Arts that brings to life the lyrical poetry of the 12th-century poet Jayadeva. Performed in the tradition of Bharatanatyam and Odissi, this piece weaves together intricate footwork, expressive abhinaya, and evocative costumes to narrate the eternal love story of Radha and Krishna. A celebration of India's spiritual and artistic heritage.",
     date: "Aug 2025",
     category: "Classical Dance",
-    cover: "/images/home/gallery-classical-performance.jpg",
     videoSrc: "/videos/GEET GOVINDA_1080p.mp4",
   },
   {
@@ -23,10 +22,15 @@ const PERFORMANCES = [
       "The Stage Showcase 2025 is a high-energy live performance that captures the spirit and diversity of Myriad Arts. From Bollywood showstoppers to raw folk expressions and sharp contemporary choreography, this showcase is a testament to the breadth of talent within the Myriad Arts family. Featuring original choreography, stunning costumes, and an electrifying stage presence — a night to remember.",
     date: "Aug 2025",
     category: "Multi-Genre Performance",
-    cover: "/images/home/gallery-stage-performance.jpg",
     videoSrc: "/videos/FilmForth QTTrim 2025_08_28_20_04_28.mp4",
   },
 ];
+
+// ─── Carousel constants ───────────────────────────────────────────────────────
+const CARD_WIDTH = 460;
+const CARD_GAP = 20;
+const CARD_STEP = CARD_WIDTH + CARD_GAP;
+const AUTO_SPEED = 0.55; // px/frame
 
 // ─── Icons ────────────────────────────────────────────────────────────────────
 function PlayIcon() {
@@ -45,75 +49,50 @@ function CalIcon() {
   );
 }
 
-// ─── Video Card ───────────────────────────────────────────────────────────────
-function VideoCard({ perf, index, onClick }) {
-  const cardRef = useRef(null);
+// ─── Video Card (autoplay, no cover image) ────────────────────────────────────
+function VideoCard({ perf, onClick }) {
   const videoRef = useRef(null);
-  const isInView = useInView(cardRef, { once: true, margin: "-60px" });
-  const [isHovered, setIsHovered] = useState(false);
 
-  // Play silently on hover, pause (first frame stays visible) on leave
   useEffect(() => {
     const vid = videoRef.current;
     if (!vid) return;
-    if (isHovered) {
-      vid.play().catch(() => {});
-    } else {
-      vid.pause();
-      // Stay at current time so first frame shows as poster
-      vid.currentTime = 0;
-    }
-  }, [isHovered]);
+    vid.muted = true;
+    vid.play().catch(() => {});
+  }, []);
 
   return (
-    <motion.article
-      ref={cardRef}
-      initial={{ opacity: 0, y: 32 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+    <article
       onClick={() => onClick(perf)}
-      className="group relative flex flex-col border border-white/[0.07] rounded-xl overflow-hidden cursor-pointer hover:border-[#c1121f]/40 transition-all duration-500 hover:shadow-[0_8px_36px_rgba(193,18,31,0.2)] hover:-translate-y-1"
+      className="group relative flex flex-col border border-white/[0.07] rounded-xl overflow-hidden cursor-pointer hover:border-[#c1121f]/40 transition-all duration-500 hover:shadow-[0_8px_36px_rgba(193,18,31,0.2)] flex-shrink-0"
+      style={{ width: `${CARD_WIDTH}px` }}
       role="button"
       aria-label={`Watch ${perf.title}`}
     >
-      {/* ── Card thumbnail area ── */}
-      <div className="relative w-full flex-shrink-0 overflow-hidden bg-black" style={{ aspectRatio: "16/5" }}>
-        {/* Static image cover — always visible */}
-        <img
-          src={perf.cover}
-          alt={perf.title}
-          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-        />
-
-        {/* Video overlay — fades in on hover, plays silently */}
+      {/* ── Video area — no cover, just the video ── */}
+      <div className="relative w-full flex-shrink-0 overflow-hidden bg-black" style={{ aspectRatio: "16/9" }}>
         <video
           ref={videoRef}
           src={perf.videoSrc}
           muted
+          loop
           playsInline
-          preload="none"
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${isHovered ? "opacity-100" : "opacity-0"}`}
+          preload="auto"
+          className="absolute inset-0 w-full h-full object-cover"
         />
 
         {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-transparent pointer-events-none z-10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent pointer-events-none z-10" />
 
-        {/* Genre — plain text, top-left, no badge */}
+        {/* Genre label */}
         <span className="absolute top-3 left-3 z-20 text-white/75 text-[10px] font-bold tracking-[0.22em] uppercase drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]">
           {perf.category}
         </span>
 
-        {/* Play button — bottom right */}
+        {/* Play button */}
         <div className="absolute bottom-3 right-3 z-20">
-          <motion.div
-            animate={{ opacity: isHovered ? 1 : 0.6, scale: isHovered ? 1.1 : 1 }}
-            transition={{ duration: 0.25 }}
-            className="w-8 h-8 rounded-full bg-[#c1121f]/90 backdrop-blur-sm flex items-center justify-center shadow-lg border border-white/10"
-          >
+          <div className="w-8 h-8 rounded-full bg-[#c1121f]/90 backdrop-blur-sm flex items-center justify-center shadow-lg border border-white/10 opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300">
             <PlayIcon />
-          </motion.div>
+          </div>
         </div>
       </div>
 
@@ -127,7 +106,130 @@ function VideoCard({ perf, index, onClick }) {
           {perf.date}
         </span>
       </div>
-    </motion.article>
+    </article>
+  );
+}
+
+// ─── Infinite Auto-Scrolling Carousel (mouse/touch draggable) ─────────────────
+function InfiniteCarousel({ items, onCardClick }) {
+  // Triple the items for a seamless infinite loop
+  const cloned = [...items, ...items, ...items];
+  const totalWidth = items.length * CARD_STEP;
+
+  const trackRef = useRef(null);
+  const xRef = useRef(-totalWidth);
+  const rafRef = useRef(null);
+  const isDragging = useRef(false);
+  const isHovering = useRef(false);
+  const dragStartX = useRef(0);
+  const dragStartOffset = useRef(0);
+  const velocityRef = useRef(0);
+  const lastClientX = useRef(0);
+  const clickGuard = useRef(false);
+
+  const applyTransform = useCallback((x) => {
+    if (trackRef.current) {
+      trackRef.current.style.transform = `translateX(${x}px)`;
+    }
+  }, []);
+
+  const tick = useCallback(() => {
+    if (!isDragging.current) {
+      // Auto-scroll (slows significantly on hover)
+      xRef.current -= isHovering.current ? AUTO_SPEED * 0.12 : AUTO_SPEED;
+
+      // Apply drag momentum / friction
+      if (Math.abs(velocityRef.current) > 0.05) {
+        xRef.current += velocityRef.current;
+        velocityRef.current *= 0.93;
+      }
+    }
+
+    // Seamless loop
+    if (xRef.current <= -totalWidth * 2) xRef.current += totalWidth;
+    if (xRef.current > -totalWidth) xRef.current -= totalWidth;
+
+    applyTransform(xRef.current);
+    rafRef.current = requestAnimationFrame(tick);
+  }, [applyTransform, totalWidth]);
+
+  useEffect(() => {
+    // Start at the middle clone
+    xRef.current = -totalWidth;
+    applyTransform(xRef.current);
+    rafRef.current = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafRef.current);
+  }, [tick, totalWidth, applyTransform]);
+
+  // ── Pointer/touch handlers ──
+  const onDragStart = useCallback((clientX) => {
+    isDragging.current = true;
+    clickGuard.current = false;
+    dragStartX.current = clientX;
+    dragStartOffset.current = xRef.current;
+    lastClientX.current = clientX;
+    velocityRef.current = 0;
+    if (trackRef.current) trackRef.current.style.cursor = "grabbing";
+  }, []);
+
+  const onDragMove = useCallback((clientX) => {
+    if (!isDragging.current) return;
+    const delta = clientX - dragStartX.current;
+    velocityRef.current = (clientX - lastClientX.current) * 0.5;
+    lastClientX.current = clientX;
+    xRef.current = dragStartOffset.current + delta;
+    // Keep in loop range
+    if (xRef.current <= -totalWidth * 2) xRef.current += totalWidth;
+    if (xRef.current > -totalWidth) xRef.current -= totalWidth;
+    applyTransform(xRef.current);
+    if (Math.abs(delta) > 5) clickGuard.current = true;
+  }, [applyTransform, totalWidth]);
+
+  const onDragEnd = useCallback(() => {
+    isDragging.current = false;
+    if (trackRef.current) trackRef.current.style.cursor = "grab";
+  }, []);
+
+  const handleCardClick = useCallback((perf) => {
+    if (!clickGuard.current) onCardClick(perf);
+  }, [onCardClick]);
+
+  return (
+    <div
+      className="relative w-full overflow-hidden select-none"
+      style={{
+        maskImage: "linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%)",
+        WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%)",
+      }}
+      onMouseEnter={() => { isHovering.current = true; }}
+      onMouseLeave={() => { isHovering.current = false; isDragging.current = false; }}
+      onMouseDown={(e) => { onDragStart(e.clientX); e.preventDefault(); }}
+      onMouseMove={(e) => onDragMove(e.clientX)}
+      onMouseUp={onDragEnd}
+      onTouchStart={(e) => onDragStart(e.touches[0].clientX)}
+      onTouchMove={(e) => { onDragMove(e.touches[0].clientX); e.preventDefault(); }}
+      onTouchEnd={onDragEnd}
+    >
+      <div
+        ref={trackRef}
+        className="flex"
+        style={{
+          gap: `${CARD_GAP}px`,
+          cursor: "grab",
+          willChange: "transform",
+          width: `${cloned.length * CARD_STEP}px`,
+          transform: `translateX(${-totalWidth}px)`,
+        }}
+      >
+        {cloned.map((perf, i) => (
+          <VideoCard
+            key={`${perf.id}-${i}`}
+            perf={perf}
+            onClick={handleCardClick}
+          />
+        ))}
+      </div>
+    </div>
   );
 }
 
@@ -251,57 +353,42 @@ export default function PerformanceJourneySection() {
           style={{ background: "radial-gradient(circle, #c1121f 0%, transparent 70%)" }}
         />
 
-        <div className="relative z-20 w-full max-w-[90rem] mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
+        <div className="relative z-20 w-full">
 
-          {/* ── Header ── */}
-          <div ref={headingRef} className="mb-8 md:mb-10">
-            <motion.span
-              className="font-sans text-[#c1121f] text-[10px] font-bold tracking-[0.38em] uppercase block mb-3"
-              initial={{ opacity: 0, y: 10 }}
-              animate={isHeadingInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            >
-              Myriad Arts
-            </motion.span>
+          {/* ── Header (contained) ── */}
+          <div className="w-full max-w-[90rem] mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
+            <div ref={headingRef} className="mb-10 md:mb-12">
 
-            <motion.h2
-              className="type-heading-xl text-white mb-3"
-              initial={{ opacity: 0, y: 24 }}
-              animate={isHeadingInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            >
-              Our <span className="text-[#c1121f]">Performance</span> Journey
-            </motion.h2>
+              <motion.h2
+                className="type-heading-xl text-white mb-3"
+                initial={{ opacity: 0, y: 24 }}
+                animate={isHeadingInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              >
+                Our <span className="text-[#c1121f]">Performance</span>
+              </motion.h2>
 
-            <motion.p
-              className="type-body-md text-white/50 max-w-xl"
-              initial={{ opacity: 0, y: 18 }}
-              animate={isHeadingInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            >
-              Click any performance to watch the full video.
-            </motion.p>
+              <motion.p
+                className="type-body-md text-white/50 max-w-xl"
+                initial={{ opacity: 0, y: 18 }}
+                animate={isHeadingInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              >
+                Drag to browse · Click any performance to watch the full video.
+              </motion.p>
 
-            <motion.div
-              className="mt-5 w-12 h-[1.5px] bg-[#c1121f]"
-              initial={{ scaleX: 0, opacity: 0 }}
-              animate={isHeadingInView ? { scaleX: 1, opacity: 1 } : {}}
-              transition={{ duration: 0.5, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              style={{ transformOrigin: "left" }}
-            />
-          </div>
-
-          {/* ── Grid ── */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
-            {PERFORMANCES.map((perf, index) => (
-              <VideoCard
-                key={perf.id}
-                perf={perf}
-                index={index}
-                onClick={setSelectedPerf}
+              <motion.div
+                className="mt-5 w-12 h-[1.5px] bg-[#c1121f]"
+                initial={{ scaleX: 0, opacity: 0 }}
+                animate={isHeadingInView ? { scaleX: 1, opacity: 1 } : {}}
+                transition={{ duration: 0.5, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                style={{ transformOrigin: "left" }}
               />
-            ))}
+            </div>
           </div>
+
+          {/* ── Infinite Carousel (full-bleed) ── */}
+          <InfiniteCarousel items={PERFORMANCES} onCardClick={setSelectedPerf} />
 
         </div>
       </section>
