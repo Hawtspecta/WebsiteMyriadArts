@@ -8,32 +8,32 @@ import VaarsaAtmosphericBackground from "../shared/VaarsaAtmosphericBackground";
 const categories = [
   {
     title: "Performances",
-    subtitle: "Classical & Contemporary Masterclasses",
-    details: "Intensive movement sessions shaped to balance expression, precision, and stage presence.",
+    subtitle: "Indian Folk & Classical Arts, Live on Stage",
+    details: "Authentic folk and classical dance performances from across 28 states of India, crafted to entertain and celebrate cultural diversity.",
     image: "/images/home/category-performance-cover.jpg",
     video: "https://media.myriadarts.in/home/category-performances.mp4",
     link: "/services#performances"
   },
   {
     title: "Workshops & Classes",
-    subtitle: "Learn hands-on from industry masters",
-    details: "Hands-on sessions built around technique, creative direction, and practical performance feedback.",
+    subtitle: "Learn India's Living Traditions Hands-On",
+    details: "Immersive workshops exploring the music, movement, and traditions that make India's regional art forms unique.",
     image: "/images/home/category-workshop-cover.jpg",
     video: "https://media.myriadarts.in/home/category-workshops.mp4",
     link: "/services#workshops"
   },
   {
     title: "Events & Production",
-    subtitle: "Live performances and breathtaking showcases",
-    details: "Curated live moments designed to feel immersive, polished, and emotionally resonant.",
+    subtitle: "Memorable Cultural Experiences for Every Occasion",
+    details: "Corporate events, cultural festivals, weddings, and celebrations — we bring Indian folk traditions to your stage.",
     image: "/images/home/category-events-cover.jpg",
     video: "https://media.myriadarts.in/vaarsa/vaarsa-showcase.mp4",
     link: "/services#events"
   },
   {
     title: "Music",
-    subtitle: "The rhythm and soul behind the stage",
-    details: "Sound-led storytelling that supports atmosphere, pacing, and the cinematic flow of the experience.",
+    subtitle: "The Rhythm & Soul of India's Folk Heritage",
+    details: "From Marathi folk rhythms to classical ragas — live music that connects your audience with India's sonic traditions.",
     image: "/images/home/category-music-performance.jpg",
     video: "https://media.myriadarts.in/home/music-highlight.mp4",
     link: "/services#music"

@@ -100,7 +100,7 @@ export default function AboutHero() {
           transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
           className="text-base md:text-lg leading-relaxed max-w-2xl mx-auto mb-10 text-[#f5dbd8] font-light drop-shadow-[0_2px_15px_rgba(0,0,0,0.95)]"
         >
-          Under one creative banner, we bring visions to life through captivating ink art, timeless photography, electrifying performances, and seamless event management. Our passion is crafting extraordinary experiences.
+          From the vibrant rhythms of Maharashtra's folk traditions to the diverse performing arts of India — Myriad Arts brings culture to the stage through live performances, traditional music, and immersive cultural experiences.
         </motion.p>
       </div>
     </section>

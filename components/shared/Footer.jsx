@@ -93,7 +93,7 @@ export default function Footer() {
               </span>
             </div>
             <p className="type-body-sm text-white/80 max-w-sm">
-              A premier arts and cultural platform celebrating India&apos;s diverse artistic traditions through performances, workshops, and immersive experiences.
+              Bringing India&apos;s living folk traditions to the stage. 100+ art forms across 28 states — performed at corporate events, cultural festivals, weddings, and celebrations.
             </p>
             {/* Social Links */}
             <div className="flex items-center gap-4 mt-2">

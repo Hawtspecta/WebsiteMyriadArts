@@ -255,7 +255,7 @@ export default function HeroSection() {
           >
             <div className="h-[3px] w-6 md:w-12 bg-[#c1121f] flex-shrink-0" />
             <p className="type-meta text-white/78 whitespace-normal md:whitespace-nowrap">
-              We curate stages where tradition meets brilliance
+              Indian Folk Arts. Live on Stage.
             </p>
           </motion.div>
         </motion.div>

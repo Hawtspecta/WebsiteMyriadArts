@@ -91,7 +91,7 @@ export default function EventDescriptionSection() {
                 animate={isContentInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.7, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
               >
-                Vaarsa
+                Bring Indian Folk Traditions to Your Stage
               </motion.h3>
 
               <motion.p
@@ -100,8 +100,7 @@ export default function EventDescriptionSection() {
                 animate={isContentInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
               >
-                Celebrating India's living traditions 100+ folk arts across 28 states,
-                brought alive through rhythm, color, and community.
+                Every region of India has a story to tell through its music, movement, costumes, and traditions. Whether you're planning a corporate event, cultural festival, wedding, or special celebration — Myriad Arts brings these stories to life on stage.
               </motion.p>
 
               <motion.div
@@ -118,7 +117,7 @@ export default function EventDescriptionSection() {
                   }}
                   className="type-button bg-[#c1121f] text-white px-6 py-2.5 rounded hover:bg-[#a50f1a] transition-colors shadow-lg cursor-pointer"
                 >
-                  Explore Event
+                  Enquire About a Performance
                 </button>
               </motion.div>
             </div>

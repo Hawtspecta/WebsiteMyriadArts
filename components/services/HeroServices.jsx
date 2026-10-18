@@ -113,7 +113,7 @@ export default function HeroServices() {
           transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
           className="text-base md:text-lg leading-relaxed max-w-2xl mx-auto mb-10 text-[#f5dbd8] font-light drop-shadow-[0_2px_15px_rgba(0,0,0,0.95)]"
         >
-          Creating bespoke stage productions, training modules, cultural productions, and cinematic compositions—bringing Indian classical and contemporary art to the global stage.
+          Hire Indian folk performers for your next event. From classical dance to vibrant folk traditions, we help you find performances that connect audiences with India's rich artistic heritage.
         </motion.p>
       </div>
     </section>
